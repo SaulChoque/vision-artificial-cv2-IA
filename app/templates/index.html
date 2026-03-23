@@ -22,7 +22,7 @@
 <body>
   <main class="container">
     <h1>{{ app_title }}</h1>
-    <p class="subtitle">Escaneo de bordes Sobel y Canny para exposición de visión artificial.</p>
+    <p class="subtitle">Escaneo de bordes Sobel y Canny usando OpenCV (cv2).</p>
 
     <section class="card">
       <form id="procesar-form">
@@ -53,7 +53,7 @@
     </section>
 
     <section class="card links">
-      <h2>Enlaces de exposición</h2>
+      <h2>Enlace de la diapositiva</h2>
       {% if canva_presentation_url %}
       <p>Presentación Canva: <a href="{{ canva_presentation_url }}" target="_blank" rel="noopener">Abrir presentación</a></p>
       {% else %}
