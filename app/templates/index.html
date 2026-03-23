@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ app_title }}</title>
+  <meta name="description" content="{{ app_description }}" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ app_title }}" />
+  <meta property="og:description" content="{{ app_description }}" />
+  <meta property="og:url" content="{{ app_url }}" />
+  <meta property="og:image" content="{{ app_url }}/static/preview.svg" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ app_title }}" />
+  <meta name="twitter:description" content="{{ app_description }}" />
+  <meta name="twitter:image" content="{{ app_url }}/static/preview.svg" />
+
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>{{ app_title }}</h1>
+    <p class="subtitle">Escaneo de bordes Sobel y Canny para exposición de visión artificial.</p>
+
+    <section class="card">
+      <form id="procesar-form">
+        <label for="archivo">Selecciona o toma una foto:</label>
+        <input id="archivo" name="archivo" type="file" accept="image/*" capture="environment" required />
+
+        <div class="row">
+          <div class="field">
+            <label for="umbral">Umbral</label>
+            <input id="umbral" name="umbral" type="number" min="1" max="255" value="200" />
+          </div>
+          <div class="field">
+            <label for="escala">Escala</label>
+            <input id="escala" name="escala" type="number" min="0.1" max="4" step="0.1" value="1.0" />
+          </div>
+        </div>
+
+        <button id="btn-procesar" type="submit">Procesar imagen</button>
+      </form>
+      <p id="estado" class="estado"></p>
+    </section>
+
+    <section class="card hidden" id="resultados">
+      <h2>Resultado del escaneo</h2>
+      <img id="img-sobel" alt="Resultado Sobel" />
+      <img id="img-canny" alt="Resultado Canny" />
+      <pre id="parametros" class="parametros"></pre>
+    </section>
+
+    <section class="card links">
+      <h2>Enlaces de exposición</h2>
+      {% if canva_presentation_url %}
+      <p>Presentación Canva: <a href="{{ canva_presentation_url }}" target="_blank" rel="noopener">Abrir presentación</a></p>
+      {% else %}
+      <p>Configura <strong>CANVA_PRESENTATION_URL</strong> para mostrar el enlace de la presentación.</p>
+      {% endif %}
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
